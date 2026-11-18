@@ -95,5 +95,22 @@
       "423"
     ],
     "explanation": "인증 실패를 몇 번이든 허용해 무차별 대입이 가능하다. 실패 횟수를 세어 일정 횟수 이후 잠금·지연한다."
+  },
+  {
+    "id": "p06",
+    "file": "problems/p06.py",
+    "lines": [
+      17
+    ],
+    "weakness": "비밀번호 평문 기록",
+    "type": "보안기능",
+    "design": "비밀번호 관리",
+    "pattern": "비밀번호를 평문으로 로그에 기록",
+    "fix": "log.info(\"signup request name=%s\", name)",
+    "fix_keywords": [
+      "log.info",
+      "name"
+    ],
+    "explanation": "비밀번호를 로그 파일에 평문으로 남겨 로그에 접근하는 누구나 비밀번호를 볼 수 있다. 비밀번호는 기록하지 않는다."
   }
 ]

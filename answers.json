@@ -167,5 +167,23 @@
       "card_number"
     ],
     "explanation": "카드번호를 DB 에 평문으로 저장하고 암호화되지 않은 http 로 전송한다. 저장 시 암호화하고 전송은 TLS(https)를 쓴다."
+  },
+  {
+    "id": "p10",
+    "file": "problems/p10.py",
+    "lines": [
+      16
+    ],
+    "weakness": "오류 메시지를 통한 정보 노출",
+    "type": "에러처리",
+    "design": "예외처리",
+    "pattern": "예외 응답에 스택트레이스 포함",
+    "fix": "except Exception: app.logger.exception(\"member lookup failed\"); return \"요청을 처리할 수 없습니다\", 500",
+    "fix_keywords": [
+      "app.logger",
+      "return",
+      "500"
+    ],
+    "explanation": "오류 응답에 스택트레이스(내부 경로·질의 구조)를 그대로 보내 공격자에게 내부 정보를 준다. 상세 내용은 서버 로그에만 남기고 일반 메시지를 돌려준다."
   }
 ]

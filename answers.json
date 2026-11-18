@@ -36,5 +36,25 @@
       "UTF-8"
     ],
     "explanation": "저장된 입력값을 출력 인코딩 없이 HTML에 넣어 스크립트가 실행될 수 있다. 출력 시 htmlspecialchars 로 인코딩한다."
+  },
+  {
+    "id": "p03",
+    "file": "problems/p03.py",
+    "lines": [
+      8,
+      10,
+      13
+    ],
+    "weakness": "크로스사이트 요청 위조(CSRF)",
+    "type": "입력데이터 검증 및 표현",
+    "design": "웹 기반 중요기능 수행 요청 검증",
+    "pattern": "중요기능 요청에 요청 위조 방지 토큰 검증 없음",
+    "fix": "if request.form.get(\"csrf_token\") != session.get(\"csrf_token\"): abort(403)",
+    "fix_keywords": [
+      "csrf_token",
+      "session",
+      "abort"
+    ],
+    "explanation": "로그인 세션만 확인하고 요청이 사용자의 의도인지 검증하지 않아 다른 사이트의 위조 요청으로 송금이 실행된다. 요청마다 예측 불가한 CSRF 토큰을 검증한다."
   }
 ]

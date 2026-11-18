@@ -352,5 +352,22 @@
       "ip_network"
     ],
     "explanation": "역방향 DNS 조회 결과는 공격자가 조작할 수 있는데 이를 접근 통제에 사용한다. IP 주소 자체를 허용 대역과 비교한다."
+  },
+  {
+    "id": "p20",
+    "file": "problems/p20.py",
+    "lines": [
+      18
+    ],
+    "weakness": "취약한 API 사용",
+    "type": "API 오용",
+    "design": "설계 항목 없음(구현 단계 코딩 규칙)",
+    "pattern": "신뢰할 수 없는 쿠키를 pickle.loads 로 역직렬화",
+    "fix": "data = json.loads(base64.b64decode(raw))",
+    "fix_keywords": [
+      "json.loads",
+      "json"
+    ],
+    "explanation": "사용자가 조작할 수 있는 쿠키를 pickle 로 역직렬화하면 임의 코드가 실행될 수 있다. 데이터 전용 형식인 JSON 을 쓴다."
   }
 ]

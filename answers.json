@@ -334,5 +334,23 @@
       "dump"
     ],
     "explanation": "개발 중 쓰던 인증 우회와 사용자 덤프 경로가 남아 있어 누구나 로그인 우회와 계정 정보 조회가 가능하다. 배포 전에 제거한다."
+  },
+  {
+    "id": "p19",
+    "file": "problems/p19.py",
+    "lines": [
+      8,
+      9
+    ],
+    "weakness": "DNS lookup에 의존한 보안 결정",
+    "type": "API 오용",
+    "design": "설계 항목 없음(구현 단계 코딩 규칙)",
+    "pattern": "역방향 DNS 결과로 접근 허용 여부를 결정",
+    "fix": "import ipaddress; return ipaddress.ip_address(remote_addr) in ipaddress.ip_network(\"10.0.0.0/8\")",
+    "fix_keywords": [
+      "ipaddress",
+      "ip_network"
+    ],
+    "explanation": "역방향 DNS 조회 결과는 공격자가 조작할 수 있는데 이를 접근 통제에 사용한다. IP 주소 자체를 허용 대역과 비교한다."
   }
 ]

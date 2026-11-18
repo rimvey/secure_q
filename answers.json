@@ -295,5 +295,23 @@
       "with lock"
     ],
     "explanation": "잔액 검사와 차감이 원자적이지 않아 동시 요청이 모두 검사를 통과해 잔액이 음수가 된다. 검사와 사용을 하나의 잠금 안에서 수행한다."
+  },
+  {
+    "id": "p17",
+    "file": "problems/p17.py",
+    "lines": [
+      13,
+      18
+    ],
+    "weakness": "널 포인터 역참조",
+    "type": "코드오류",
+    "design": "설계 항목 없음(구현 단계 코딩 규칙)",
+    "pattern": "조회 결과가 None 일 수 있는데 검사 없이 사용",
+    "fix": "if user is None: raise LookupError(name)",
+    "fix_keywords": [
+      "is None",
+      "raise"
+    ],
+    "explanation": "존재하지 않는 이름을 조회하면 None 이 반환되는데 검사 없이 접근해 예외로 서비스가 중단된다. 반환값을 확인한 뒤 사용한다."
   }
 ]

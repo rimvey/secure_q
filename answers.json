@@ -224,5 +224,22 @@
       "abort"
     ],
     "explanation": "../ 가 들어간 파일명이 경로에 그대로 결합되어 기준 디렉터리 밖의 파일을 읽을 수 있다. 정규화한 경로가 기준 디렉터리 안인지 검사한다."
+  },
+  {
+    "id": "p13",
+    "file": "problems/p13.php",
+    "lines": [
+      6
+    ],
+    "weakness": "운영체제 명령어 삽입",
+    "type": "입력데이터 검증 및 표현",
+    "design": "시스템 자원 접근 및 명령어 수행 입력값 검증",
+    "pattern": "사용자 입력을 셸 명령 문자열에 결합",
+    "fix": "if (!filter_var($host, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME)) exit(\"invalid\"); shell_exec(\"ping -c 2 \" . escapeshellarg($host))",
+    "fix_keywords": [
+      "escapeshellarg",
+      "FILTER_VALIDATE_DOMAIN"
+    ],
+    "explanation": "입력값이 셸 명령에 이어 붙어 ; 등으로 다른 명령을 실행할 수 있다. 입력을 허용 형식으로 검증하고 escapeshellarg 로 인자화한다."
   }
 ]

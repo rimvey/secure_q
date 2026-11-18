@@ -148,5 +148,24 @@
       "secrets"
     ],
     "explanation": "MD5 는 취약한 해시이고 random 모듈은 예측 가능한 난수다. 안전한 해시(SHA-256 이상+솔트+반복)와 secrets 모듈을 쓴다."
+  },
+  {
+    "id": "p09",
+    "file": "problems/p09.py",
+    "lines": [
+      10,
+      17
+    ],
+    "weakness": "평문 저장, 평문 전송",
+    "type": "보안기능",
+    "design": "중요정보 저장·전송",
+    "pattern": "카드번호를 암호화 없이 저장하고 http 로 전송",
+    "fix": "API_URL = \"https://pay.example.com/api/v1/cards\"; encrypt_card(card_number) 후 저장",
+    "fix_keywords": [
+      "https",
+      "encrypt",
+      "card_number"
+    ],
+    "explanation": "카드번호를 DB 에 평문으로 저장하고 암호화되지 않은 http 로 전송한다. 저장 시 암호화하고 전송은 TLS(https)를 쓴다."
   }
 ]

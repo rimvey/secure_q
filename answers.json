@@ -112,5 +112,22 @@
       "name"
     ],
     "explanation": "비밀번호를 로그 파일에 평문으로 남겨 로그에 접근하는 누구나 비밀번호를 볼 수 있다. 비밀번호는 기록하지 않는다."
+  },
+  {
+    "id": "p07",
+    "file": "problems/p07.py",
+    "lines": [
+      5
+    ],
+    "weakness": "하드코딩된 암호화 키",
+    "type": "보안기능",
+    "design": "암호화 키 관리",
+    "pattern": "암호화 키를 소스코드 상수로 보관",
+    "fix": "SECRET_KEY = base64.b64decode(os.environ[\"PAYMENT_AES_KEY\"])",
+    "fix_keywords": [
+      "os.environ",
+      "PAYMENT_AES_KEY"
+    ],
+    "explanation": "암호화 키가 소스코드에 들어 있어 코드가 유출되면 키도 유출된다. 키는 입력값과 무관하게 소스 밖(환경변수·키 관리 시스템)에서 관리한다."
   }
 ]

@@ -241,5 +241,23 @@
       "FILTER_VALIDATE_DOMAIN"
     ],
     "explanation": "입력값이 셸 명령에 이어 붙어 ; 등으로 다른 명령을 실행할 수 있다. 입력을 허용 형식으로 검증하고 escapeshellarg 로 인자화한다."
+  },
+  {
+    "id": "p14",
+    "file": "problems/p14.py",
+    "lines": [
+      7
+    ],
+    "weakness": "정수형 오버플로",
+    "type": "입력데이터 검증 및 표현",
+    "design": "허용된 범위 내 메모리 접근",
+    "pattern": "곱셈 결과를 32비트 정수로 잘라 범위 검사 없이 사용",
+    "fix": "if quantity <= 0 or unit_price * quantity > 2**31 - 1: raise ValueError(\"범위 초과\")",
+    "fix_keywords": [
+      "raise",
+      "2**31",
+      "quantity"
+    ],
+    "explanation": "수량과 단가의 곱이 32비트 범위를 넘으면 값이 음수·작은 값으로 바뀌어 결제 금액이 왜곡된다. 연산 전에 입력과 결과의 허용 범위를 검사한다."
   }
 ]

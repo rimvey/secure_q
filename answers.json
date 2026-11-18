@@ -259,5 +259,23 @@
       "quantity"
     ],
     "explanation": "수량과 단가의 곱이 32비트 범위를 넘으면 값이 음수·작은 값으로 바뀌어 결제 금액이 왜곡된다. 연산 전에 입력과 결과의 허용 범위를 검사한다."
+  },
+  {
+    "id": "p15",
+    "file": "problems/p15.py",
+    "lines": [
+      14,
+      15
+    ],
+    "weakness": "부적절한 예외 처리",
+    "type": "에러처리",
+    "design": "예외처리",
+    "pattern": "예외를 잡아 보안 검사를 통과시키는 처리",
+    "fix": "except jwt.InvalidTokenError: return False",
+    "fix_keywords": [
+      "InvalidTokenError",
+      "return False"
+    ],
+    "explanation": "토큰 검증 중 예외가 나면 관리자로 간주해 모든 요청이 통과된다. 예외 종류별로 처리하고 실패 시 접근을 거부한다."
   }
 ]

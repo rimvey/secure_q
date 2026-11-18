@@ -205,5 +205,24 @@
       "user"
     ],
     "explanation": "현재 사용자 정보를 전역 변수에 두어 동시에 접속한 다른 사용자의 요청이 그 정보를 읽는다. 사용자별 세션에 저장한다."
+  },
+  {
+    "id": "p12",
+    "file": "problems/p12.py",
+    "lines": [
+      16,
+      19
+    ],
+    "weakness": "경로 조작 및 자원 삽입",
+    "type": "입력데이터 검증 및 표현",
+    "design": "시스템 자원 접근 및 명령어 수행 입력값 검증",
+    "pattern": "입력 파일명을 검증 없이 경로에 결합",
+    "fix": "path = os.path.realpath(os.path.join(BASE_DIR, name)); if not path.startswith(BASE_DIR + os.sep): abort(400)",
+    "fix_keywords": [
+      "realpath",
+      "startswith",
+      "abort"
+    ],
+    "explanation": "../ 가 들어간 파일명이 경로에 그대로 결합되어 기준 디렉터리 밖의 파일을 읽을 수 있다. 정규화한 경로가 기준 디렉터리 안인지 검사한다."
   }
 ]

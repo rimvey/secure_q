@@ -1,0 +1,21 @@
+[
+  {
+    "id": "p01",
+    "file": "problems/p01.py",
+    "lines": [
+      17,
+      18
+    ],
+    "weakness": "SQL 삽입",
+    "type": "입력데이터 검증 및 표현",
+    "design": "DBMS 조회 및 결과 검증",
+    "pattern": "문자열 연결로 만든 SQL 실행",
+    "fix": "cur.execute(\"SELECT id, item, price FROM orders WHERE customer = ?\", (customer,))",
+    "fix_keywords": [
+      "execute",
+      "?",
+      "(customer,)"
+    ],
+    "explanation": "요청 파라미터가 SQL 문자열에 그대로 이어 붙어 입력값이 SQL 문법으로 해석된다. 준비된 문장으로 구조를 고정하고 값은 바인딩한다."
+  }
+]

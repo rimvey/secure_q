@@ -277,5 +277,23 @@
       "return False"
     ],
     "explanation": "토큰 검증 중 예외가 나면 관리자로 간주해 모든 요청이 통과된다. 예외 종류별로 처리하고 실패 시 접근을 거부한다."
+  },
+  {
+    "id": "p16",
+    "file": "problems/p16.py",
+    "lines": [
+      9,
+      11
+    ],
+    "weakness": "경쟁조건(검사 시점과 사용 시점)",
+    "type": "시간 및 상태",
+    "design": "설계 항목 없음(구현 단계 코딩 규칙)",
+    "pattern": "잔액 확인과 차감 사이에 동기화 없음",
+    "fix": "lock = threading.Lock(); with lock: if balance >= amount: balance -= amount",
+    "fix_keywords": [
+      "Lock",
+      "with lock"
+    ],
+    "explanation": "잔액 검사와 차감이 원자적이지 않아 동시 요청이 모두 검사를 통과해 잔액이 음수가 된다. 검사와 사용을 하나의 잠금 안에서 수행한다."
   }
 ]

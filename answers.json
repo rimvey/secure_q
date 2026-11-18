@@ -129,5 +129,24 @@
       "PAYMENT_AES_KEY"
     ],
     "explanation": "암호화 키가 소스코드에 들어 있어 코드가 유출되면 키도 유출된다. 키는 입력값과 무관하게 소스 밖(환경변수·키 관리 시스템)에서 관리한다."
+  },
+  {
+    "id": "p08",
+    "file": "problems/p08.py",
+    "lines": [
+      8,
+      12
+    ],
+    "weakness": "취약한 암호 알고리즘, 부적절한 난수",
+    "type": "보안기능",
+    "design": "암호연산",
+    "pattern": "MD5 해시와 예측 가능한 난수(random) 사용",
+    "fix": "hashlib.pbkdf2_hmac(\"sha256\", password.encode(), salt, 210000); secrets.choice(chars)",
+    "fix_keywords": [
+      "pbkdf2_hmac",
+      "sha256",
+      "secrets"
+    ],
+    "explanation": "MD5 는 취약한 해시이고 random 모듈은 예측 가능한 난수다. 안전한 해시(SHA-256 이상+솔트+반복)와 secrets 모듈을 쓴다."
   }
 ]

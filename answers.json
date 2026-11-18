@@ -17,5 +17,24 @@
       "(customer,)"
     ],
     "explanation": "요청 파라미터가 SQL 문자열에 그대로 이어 붙어 입력값이 SQL 문법으로 해석된다. 준비된 문장으로 구조를 고정하고 값은 바인딩한다."
+  },
+  {
+    "id": "p02",
+    "file": "problems/p02.php",
+    "lines": [
+      21,
+      22
+    ],
+    "weakness": "크로스사이트 스크립트(XSS)",
+    "type": "입력데이터 검증 및 표현",
+    "design": "웹 서비스 요청 및 결과 검증",
+    "pattern": "사용자 입력을 인코딩 없이 HTML에 출력",
+    "fix": "echo htmlspecialchars($c[\"body\"], ENT_QUOTES, \"UTF-8\");",
+    "fix_keywords": [
+      "htmlspecialchars",
+      "ENT_QUOTES",
+      "UTF-8"
+    ],
+    "explanation": "저장된 입력값을 출력 인코딩 없이 HTML에 넣어 스크립트가 실행될 수 있다. 출력 시 htmlspecialchars 로 인코딩한다."
   }
 ]

@@ -56,5 +56,24 @@
       "abort"
     ],
     "explanation": "로그인 세션만 확인하고 요청이 사용자의 의도인지 검증하지 않아 다른 사이트의 위조 요청으로 송금이 실행된다. 요청마다 예측 불가한 CSRF 토큰을 검증한다."
+  },
+  {
+    "id": "p04",
+    "file": "problems/p04.php",
+    "lines": [
+      10,
+      11
+    ],
+    "weakness": "인가되지 않은 파일 업로드",
+    "type": "입력데이터 검증 및 표현",
+    "design": "업로드·다운로드 파일 검증",
+    "pattern": "확장자·형식·크기 검증 없이 원본 파일명으로 웹 경로에 저장",
+    "fix": "$ext = strtolower(pathinfo($file[\"name\"], PATHINFO_EXTENSION)); if (!in_array($ext, [\"jpg\",\"png\",\"pdf\"], true)) exit(\"denied\"); $target = $uploadDir . bin2hex(random_bytes(16)) . \".\" . $ext;",
+    "fix_keywords": [
+      "in_array",
+      "pathinfo",
+      "random_bytes"
+    ],
+    "explanation": "업로드 파일의 확장자·형식을 검증하지 않고 웹에서 실행 가능한 경로에 원본 이름으로 저장해 .php 파일이 올라갈 수 있다. 허용 목록으로 검증하고 파일명을 새로 만든다."
   }
 ]
